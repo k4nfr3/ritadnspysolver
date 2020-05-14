@@ -1,1 +1,1 @@
-# RitaDNSPythonSolver
+# RitaPySolver
