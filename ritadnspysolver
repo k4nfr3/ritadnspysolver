@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 
-def main(argument):
+def main(argument,db):
   result = subprocess.run(["/usr/local/bin/rita" +argument], shell=True, check=True, stdout=subprocess.PIPE)
   array_rita=result.stdout.splitlines()
   if (array_rita[0].decode('utf-8').find("Destination IP")==-1):
@@ -22,7 +22,7 @@ def main(argument):
     columnanswer=line.decode('utf-8').split(',') #split line into cells
     for k in range(len(columnanswer)):
       if k==DstIPColumn: # Column = "Destination IP"
-        finaline+=(get_hostname(columnanswer[k],1,False,True))+"," 
+        finaline+=(get_hostname(columnanswer[k],1,False,True,db))+"," 
       else :
         finaline+=(columnanswer[k])+","
     print(finaline)
@@ -31,8 +31,9 @@ if __name__ == "__main__":
   if len(sys.argv) <= 1:
     sys.exit("Usage " + sys.argv[0] + " show-beacons <db>")
   argument=""
+  db=sys.argv[2]
   for i in range(1,len(sys.argv)):
     argument+= " " + sys.argv[i]
-  main(argument)
+  main(argument,db)
 
 

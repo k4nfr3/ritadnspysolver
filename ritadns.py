@@ -5,9 +5,9 @@ def exists(var):
      var_exists = var in locals() or var in globals()
      return var_exists
 
-def get_hostname(myip,limit,full,short):
+def get_hostname(myip,limit,full,short,db):
  myclient = pymongo.MongoClient("mongodb://localhost:27017/")
- mydb=myclient["home"]
+ mydb=myclient[db]
  mycol = mydb["hostnames"]
  mycount=0
  myreturn=""
@@ -34,6 +34,7 @@ def get_hostname(myip,limit,full,short):
 
 def main():
  parser=argparse.ArgumentParser()
+ parser.add_argument('-d','--db', type=str, help='Ritas DB name', required=True)
  parser.add_argument('-ip','--ipaddress', type=str, help='IP address to solve', required=False)
  parser.add_argument('-f','--showfull', help='Show full record from DB', required=False, action="store_true")
  parser.add_argument('-n','--limit', type=int, help='Number max of returned entries, default=1', required=False)
@@ -44,7 +45,7 @@ def main():
   limit=args.limit
  else:
   limit=1
- print(get_hostname(args.ipaddress,limit,args.showfull,args.short))
+ print(get_hostname(args.ipaddress,limit,args.showfull,args.short,args.db))
 
 if __name__ == "__main__":
     main()
