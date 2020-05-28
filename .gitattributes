@@ -1,0 +1,5 @@
+* text=auto
+*.py     text diff=python
+*.txt      text
+*.jpg      binary
+*.md       text
