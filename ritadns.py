@@ -35,7 +35,7 @@ def get_hostname(myip,limit,full,short,db):
 def main():
  parser=argparse.ArgumentParser()
  parser.add_argument('-d','--db', type=str, help='Ritas DB name', required=True)
- parser.add_argument('-ip','--ipaddress', type=str, help='IP address to solve', required=False)
+ parser.add_argument('-ip','--ipaddress', type=str, help='IP address to solve', required=True)
  parser.add_argument('-f','--showfull', help='Show full record from DB', required=False, action="store_true")
  parser.add_argument('-n','--limit', type=int, help='Number max of returned entries, default=1', required=False)
  parser.add_argument('-s','--short', help='Output will be short', action="store_true")
