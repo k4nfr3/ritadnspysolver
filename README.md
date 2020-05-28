@@ -29,6 +29,8 @@ do it in Go in Rita
 
 if somebody requests it, I can add SMTP alerting instead of SYSLOG
 
+Teston: Python3.6.9  
+Requirements: PyMango, Pandas, Numpy, Argparse  
 
 
 
